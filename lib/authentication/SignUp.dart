@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stylis_ecommerce/Home_pages/Home.dart';
+import 'package:stylis_ecommerce/Starindro.dart';
 import 'package:stylis_ecommerce/authentication/Login.dart';
+
+import 'PhoneNumber.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -11,6 +15,7 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  TextEditingController Username_Email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   bool isvisible1 = true;
@@ -54,6 +59,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                   child: TextField(
+                    controller: Username_Email,
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Username or Email',
@@ -199,23 +205,28 @@ class _SignupState extends State<Signup> {
                 SizedBox(
                   height: 30.h,
                 ),
-                Container(
-                  width: 317.w,
-                  height: 55.h,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFF73658),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.r)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Create Account',
-                      style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w600,
-                      )),
+                GestureDetector(onTap: (){
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Home()),(route)=>false);
+
+                },
+                  child: Container(
+                    width: 317.w,
+                    height: 55.h,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFF73658),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.r)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Create Account',
+                        style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w600,
+                        )),
+                      ),
                     ),
                   ),
                 ),
@@ -255,20 +266,25 @@ class _SignupState extends State<Signup> {
                       child: Image.asset("assets/e.png"),
                     ),
                     SizedBox(width: 10.w),
-                    Container(
-                      width: 54.w,
-                      height: 54.h,
-                      padding: EdgeInsets.all(15.sp),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFBF3F5),
-                        shape: RoundedRectangleBorder(
-                          side:
-                              BorderSide(width: 1.w, color: Color(0xFFF73658)),
-                          borderRadius: BorderRadius.circular(50.r),
+                    GestureDetector(onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Phonenumber()));
+
+                    },
+                      child: Container(
+                        width: 54.w,
+                        height: 54.h,
+                        padding: EdgeInsets.all(15.sp),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFBF3F5),
+                          shape: RoundedRectangleBorder(
+                            side:
+                                BorderSide(width: 1.w, color: Color(0xFFF73658)),
+                            borderRadius: BorderRadius.circular(50.r),
+                          ),
                         ),
+                        child: Image.asset("assets/f.png"),
                       ),
-                      child: Image.asset("assets/f.png"),
                     )
                   ],
                 ),

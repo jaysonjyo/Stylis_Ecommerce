@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stylis_ecommerce/authentication/OTP.dart';
 
 class Phonenumber extends StatefulWidget {
   const Phonenumber({super.key});
@@ -46,7 +47,6 @@ class _PhonenumberState extends State<Phonenumber> {
                       border: InputBorder.none,
                       hintText:
                       'Enter your phone number',
-
                       hintStyle:GoogleFonts.montserrat(textStyle:  TextStyle(
                         color: Color(0xFF676767),
                         fontSize: 16.sp,
@@ -86,20 +86,25 @@ class _PhonenumberState extends State<Phonenumber> {
                   ),
                 ),
               ),  SizedBox(height: 40.h,),
-              Container(
-                width: 317.w,
-                height: 55.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF73658),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.r)),
-                ),
-                child:Center(
-                  child: Text(
-                    'Submit',
-                    style:GoogleFonts.montserrat(textStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,)
+              GestureDetector(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Otp()));
+
+              },
+                child: Container(
+                  width: 317.w,
+                  height: 55.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFF73658),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.r)),
+                  ),
+                  child:Center(
+                    child: Text(
+                      'Submit',
+                      style:GoogleFonts.montserrat(textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w600,)
+                      ),
                     ),
                   ),
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:stylis_ecommerce/Splash_Slider/Splash.dart';
+import 'package:stylis_ecommerce/Starindro.dart';
 import 'package:stylis_ecommerce/authentication/Login.dart';
 
 class Onboard extends StatefulWidget {
@@ -19,7 +20,7 @@ class _OnboardState extends State<Onboard> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => Login()),
+      MaterialPageRoute(builder: (_) => Starindro()),
     );
   }
 

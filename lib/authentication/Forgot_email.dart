@@ -86,23 +86,27 @@ class _ForgotEmailState extends State<ForgotEmail> {
                   ),
                 ),
               ),  SizedBox(height: 40.h,),
-          Container(
-            width: 317.w,
-            height: 55.h,
-            decoration: ShapeDecoration(
-              color: Color(0xFFF73658),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.r)),
-            ),
-          child:Center(
-            child: Text(
-              'Submit',
-              style:GoogleFonts.montserrat(textStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w600,)
+          GestureDetector(onTap: (){
+
+          },
+            child: Container(
+              width: 317.w,
+              height: 55.h,
+              decoration: ShapeDecoration(
+                color: Color(0xFFF73658),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.r)),
+              ),
+            child:Center(
+              child: Text(
+                'Submit',
+                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,)
+                ),
               ),
             ),
-          ),
+            ),
           ),
             ],
           ),
