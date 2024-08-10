@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stylis_ecommerce/Bottam_navigation_bar.dart';
 import 'package:stylis_ecommerce/Home_pages/Home.dart';
 import 'package:stylis_ecommerce/authentication/Forgot_email.dart';
 
@@ -134,6 +135,7 @@ class _LoginState extends State<Login> {
                           color: Color(0xFFF73658),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
+
                         )),
                       ),
                     ),
@@ -143,7 +145,7 @@ class _LoginState extends State<Login> {
                   height: 70.h,
                 ),
                 GestureDetector(onTap: (){
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Home()),(route)=>false);
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>BottamNavigationBar()),(route)=>false);
                 },
                   child: Container(
                     width: 317.w,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stylis_ecommerce/Bottam_navigation_bar.dart';
 import 'package:stylis_ecommerce/Home_pages/Home.dart';
 import 'package:stylis_ecommerce/Starindro.dart';
 import 'package:stylis_ecommerce/authentication/Login.dart';
@@ -206,7 +207,7 @@ class _SignupState extends State<Signup> {
                   height: 30.h,
                 ),
                 GestureDetector(onTap: (){
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Home()),(route)=>false);
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>BottamNavigationBar()),(route)=>false);
 
                 },
                   child: Container(

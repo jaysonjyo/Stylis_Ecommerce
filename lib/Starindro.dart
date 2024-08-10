@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stylis_ecommerce/Bottam_navigation_bar.dart';
 import 'package:stylis_ecommerce/Home_pages/Home.dart';
+import 'package:stylis_ecommerce/authentication/Login.dart';
 import 'package:stylis_ecommerce/authentication/SignUp.dart';
 
 class Starindro extends StatefulWidget {
@@ -68,7 +69,7 @@ class _StarindroState extends State<Starindro> {
               SizedBox(height: 80.h,),
 
               GestureDetector(onTap: (){
-                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Signup()),(route)=>false);
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Login()),(route)=>false);
 
               },
                 child: Container(

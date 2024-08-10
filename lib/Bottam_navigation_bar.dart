@@ -20,6 +20,7 @@ class _BottamNavigationBarState extends State<BottamNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+
         showSelectedLabels: false,
         backgroundColor: Colors.yellow,
         onTap: (index) {
