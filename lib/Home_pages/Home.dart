@@ -53,24 +53,16 @@ class _HomeState extends State<Home> {
           child: Icon(Icons.format_align_left),
         ),
         actions: [
-          Container(
-            width: 40.w,
-            height: 40.h,
-            decoration: ShapeDecoration(
-              image: DecorationImage(
-                image: NetworkImage("https://via.placeholder.com/40x40"),
-                fit: BoxFit.fill,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100.r),
-              ),
-            ),
-          )
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 8.w),
+            child: Icon(Icons.shopping_cart_outlined),
+          ),
+          //SizedBox(width: 10.w,)
         ],
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 15.w),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +95,7 @@ class _HomeState extends State<Home> {
                           color: Color(0xFFBBBBBB),
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
-                          height: 0.10.h,
+                          height: 0.10.h
                         ),
                       ),
                       prefixIcon: Icon(
@@ -335,26 +327,22 @@ class _HomeState extends State<Home> {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+
                         children: [
-                          SizedBox(
-                            height: 18.h,
-                          ),
+
                           Text('Deal of the Day',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w500,
-                                  height: 0.08.h,
                                 ),
                               )),
-                          SizedBox(
-                            height: 13.h,
-                          ),
-                          Container(
-                            width: 161.w,
-                            height: 16.h,
-                            child: Row(
+SizedBox(height: 5.h,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.alarm,
@@ -369,12 +357,12 @@ class _HomeState extends State<Home> {
                                     color: Colors.white,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
-                                    height: 0.11.h,
+
                                   )),
                                 ),
                               ],
                             ),
-                          )
+
                         ],
                       ),
                       Container(
@@ -386,27 +374,24 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(4.r),
                           ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          child: Row(
-                            children: [
-                              Text(
-                                'View all',
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.11.h,
-                                )),
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
+                        child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'View all',
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
                                 color: Colors.white,
-                                size: 16.sp,
-                              )
-                            ],
-                          ),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              )),
+                            ),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 16.sp,
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -436,7 +421,7 @@ class _HomeState extends State<Home> {
                           ),
                           child: Column(
                             children: [
-                              Image.asset("assets/i.png"),
+                              Image.asset("assets/i.png",fit: BoxFit.cover,),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 6.h),
                                 child: Column(
@@ -657,12 +642,10 @@ class _HomeState extends State<Home> {
                               color: Colors.white,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
-                              height: 0.08.h,
+
                             )),
                           ),
-                          SizedBox(
-                            height: 13.h,
-                          ),
+                          SizedBox(height: 5.h,),
                           Row(
                             children: [
                               Icon(
@@ -678,7 +661,6 @@ class _HomeState extends State<Home> {
                                   color: Colors.white,
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
-                                  height: 0.11.h,
                                 )),
                               ),
                             ],
@@ -694,27 +676,24 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(4.r),
                           ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          child: Row(
-                            children: [
-                              Text(
-                                'View all',
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.11.h,
-                                )),
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
+                        child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'View all',
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
                                 color: Colors.white,
-                                size: 16.sp,
-                              )
-                            ],
-                          ),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              )),
+                            ),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 16.sp,
+                            )
+                          ],
                         ),
                       )
                     ],

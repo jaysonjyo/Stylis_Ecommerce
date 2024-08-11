@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylis_ecommerce/Home_pages/Home.dart';
 import 'package:stylis_ecommerce/Splash_Slider/Splash.dart';
 
 void main() {

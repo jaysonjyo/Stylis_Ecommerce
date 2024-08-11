@@ -60,7 +60,8 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  child: TextField(controller: username_email,
+                  child: TextField(textAlignVertical: TextAlignVertical.center,
+                      controller: username_email,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Username or Email',
@@ -68,7 +69,6 @@ class _LoginState extends State<Login> {
                               textStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 16.sp,
-                            height: 5.h,
                             fontWeight: FontWeight.w400,
                           )),
                           prefixIcon: Padding(
@@ -92,7 +92,9 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  child: TextField(controller: password,obscureText: isvisible,
+                  child: TextField(textAlignVertical: TextAlignVertical.center,
+                      controller: password,
+                      obscureText: isvisible,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Password',
@@ -100,8 +102,7 @@ class _LoginState extends State<Login> {
                               textStyle: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                  height: 5.h)),
+                                  fontWeight: FontWeight.w500,)),
                           prefixIcon: Padding(
                             padding: EdgeInsets.symmetric(vertical: 15.h),
                             child: Icon(

@@ -82,45 +82,8 @@ backgroundColor: Colors.white,
                 ],
               ),
             ),
-            SizedBox(height: 10.h,),
-            Text(
-              'Size: 7UK',
-              style:GoogleFonts.montserrat(textStyle:  TextStyle(
-                color: Colors.black,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                )
-              ),
-            ),
-              SizedBox(height: 9.h,),
-              SizedBox(
-                width: 288.w,
-                height: 32.h,
-                child: ListView.separated(
-                    itemCount: 5,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, position) {
-                      return Column(
-                        children: [
-                          Container(
-                              width: 50.w,
-                              height: 32.h,
-                             decoration:  ShapeDecoration(
-                               shape: RoundedRectangleBorder(
-                                 side: BorderSide(width: 1.50.w, color: Color(0xFFF97189)),
-                                 borderRadius: BorderRadius.circular(4.r),
-                               ),
-                             ),),
+            SizedBox(height: 5.h,),
 
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, position) {
-                      return SizedBox(
-                        width: 9.w,
-                      );
-                    }),
-              ),
               SizedBox(height: 9.h,),
               SizedBox(
                 width: 148.w,
@@ -132,16 +95,6 @@ backgroundColor: Colors.white,
                     fontWeight: FontWeight.w600,
                   )
                   ),
-                ),
-              ),
-              SizedBox(height: 4.h,),
-              Text(
-                'Vision Alta Men’s Shoes Size (All Colours)',
-                style:GoogleFonts.montserrat(textStyle:  TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                )
                 ),
               ),
               SizedBox(height: 9.h,),
@@ -244,6 +197,105 @@ backgroundColor: Colors.white,
             moreStyle:
             TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
           ),
+              SizedBox(height: 10.h,),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Stack(alignment: Alignment.bottomLeft,
+                    children: [
+                      Container(
+                        width: 136.w,
+                        height: 36.h,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(-0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.r),
+                              topRight: Radius.circular(4.r),
+                              bottomLeft: Radius.circular(20.r),
+                              bottomRight: Radius.circular(4.r),
+                            ),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Go to cart',
+                            style:GoogleFonts.montserrat(textStyle:TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              height: 0.08.h,
+                            ),)
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 40.w,
+                        height: 40.h,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(-0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
+                          ),
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+                      )
+                    ],
+                  ),
+                  Stack(alignment: Alignment.bottomLeft,
+                    children: [
+                      Container(
+                        width: 136.w,
+                        height: 36.h,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(-0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF70F8A8), Color(0xFF31B669)],                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.r),
+                              topRight: Radius.circular(4.r),
+                              bottomLeft: Radius.circular(20.r),
+                              bottomRight: Radius.circular(4.r),
+                            ),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                              'Buy Now',
+                              style:GoogleFonts.montserrat(textStyle:TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                height: 0.08.h,
+                              ),)
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                        width: 40.w,
+                        height: 40.h,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF70F8A8), Color(0xFF31B669)],
+                          ),
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.touch_app_outlined,color: Colors.white,),
+                      )
+                    ],
+                  )
+                ],
+              )
 
           ],),
         ),

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stylis_ecommerce/Splash_Slider/onboard.dart';
 
+import '../Starindro.dart';
+
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -14,7 +16,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 4),(){
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Onboard()),(route)=>false);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Starindro()),(route)=>false);
     });
     return Scaffold(
       backgroundColor: Colors.white,

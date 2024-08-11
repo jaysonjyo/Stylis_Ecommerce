@@ -20,7 +20,7 @@ class _OnboardState extends State<Onboard> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => Starindro()),
+      MaterialPageRoute(builder: (_) => Login()),
     );
   }
 

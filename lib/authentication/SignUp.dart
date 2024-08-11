@@ -59,7 +59,7 @@ class _SignupState extends State<Signup> {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  child: TextField(
+                  child: TextField(textAlignVertical: TextAlignVertical.center,
                     controller: Username_Email,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -68,7 +68,6 @@ class _SignupState extends State<Signup> {
                             textStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 16.sp,
-                          height: 5.h,
                           fontWeight: FontWeight.w500,
                         )),
                         prefixIcon: Padding(
@@ -93,7 +92,7 @@ class _SignupState extends State<Signup> {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  child: TextField(
+                  child: TextField(textAlignVertical: TextAlignVertical.center,
                     obscureText: isvisible1,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -103,7 +102,6 @@ class _SignupState extends State<Signup> {
                           color: Colors.grey,
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
-                          height: 5.h,
                         )),
                         prefixIcon: Padding(
                           padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -135,17 +133,17 @@ class _SignupState extends State<Signup> {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  child: TextField(
+                  child: TextField(textAlignVertical: TextAlignVertical.center,
                     obscureText: isvisible2,
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'ConfirmPassword',
                         hintStyle: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: Color(0xFF676767),
+                            color: Colors.grey,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
-                            height: 5.h,
+
                           ),
                         ),
                         prefixIcon: Padding(
