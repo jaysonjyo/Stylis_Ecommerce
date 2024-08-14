@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stylis_ecommerce/Bottam_navigation_bar.dart';
 import 'package:stylis_ecommerce/Home_pages/Home.dart';
-import 'package:stylis_ecommerce/Starindro.dart';
+import 'package:stylis_ecommerce/Splash_Slider/Startindro.dart';
 import 'package:stylis_ecommerce/authentication/Login.dart';
 
 import 'PhoneNumber.dart';
@@ -16,54 +21,57 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  TextEditingController Username_Email = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   bool isvisible1 = true;
   bool isvisible2 = true;
+  FirebaseAuth auth =FirebaseAuth.instance;
+  final firestore = FirebaseFirestore.instance.collection("users");
+  var _formKey = GlobalKey<FormState>();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 40.h,
-                ),
-                Text(
-                  'Create an \naccount',
-                  style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 36.sp,
-                    fontWeight: FontWeight.w700,
-                        height: 1.h
-                  )),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Container(
-                  width: 317.w,
-                  height: 55.h,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFF3F3F3),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1.w, color: Color(0xFFA8A8A9)),
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
+      body: Form(
+        key: _formKey,
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 40.h,
                   ),
-                  child: TextField(textAlignVertical: TextAlignVertical.center,
-                    controller: Username_Email,
+                  Text(
+                    'Create an \naccount',
+                    style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 36.sp,
+                      fontWeight: FontWeight.w700,
+                          height: 1.h
+                    )),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    controller: email,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Username or Email',
+                        border: OutlineInputBorder(
+
+                        ),enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)
+
+                    ),
+                        focusedBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.black)) ,
+                        errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+                        hintText: 'Email',
                         hintStyle: GoogleFonts.montserrat(
                             textStyle: TextStyle(
                           color: Colors.grey,
@@ -77,25 +85,28 @@ class _SignupState extends State<Signup> {
                             color: Colors.grey,
                           ),
                         )),
+                    validator: (value) {
+                      if (value!.isEmpty ||
+                          !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                        return 'Enter a valid email!';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Container(
-                  width: 317.w,
-                  height: 55.h,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFF3F3F3),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1.w, color: Color(0xFFA8A8A9)),
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
+                  SizedBox(
+                    height: 30.h,
                   ),
-                  child: TextField(textAlignVertical: TextAlignVertical.center,
+                  TextFormField(controller: password,
+                    textAlignVertical: TextAlignVertical.center,
                     obscureText: isvisible1,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)
+
+                        ),
+                        focusedBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.black)) ,
+                        errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
                         hintText: 'Password',
                         hintStyle: GoogleFonts.montserrat(
                             textStyle: TextStyle(
@@ -118,25 +129,29 @@ class _SignupState extends State<Signup> {
                             });
                           },
                         )),
+
+                    validator: (value){
+                      if (value!.isEmpty || value.length<6) {
+                        return 'Enter a valid password!....';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Container(
-                  width: 317.w,
-                  height: 55.h,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFF3F3F3),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1.w, color: Color(0xFFA8A8A9)),
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
+                  SizedBox(
+                    height: 30.h,
                   ),
-                  child: TextField(textAlignVertical: TextAlignVertical.center,
-                    obscureText: isvisible2,
+                  TextFormField(
+                    controller: confirmpassword,
+                    textAlignVertical: TextAlignVertical.center,
+                    obscureText: true,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border:OutlineInputBorder(
+
+                        ),enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)
+
+                    ),
+                      focusedBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.black)) ,
+                        errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
                         hintText: 'ConfirmPassword',
                         hintStyle: GoogleFonts.montserrat(
                           textStyle: TextStyle(
@@ -153,179 +168,235 @@ class _SignupState extends State<Signup> {
                             color: Colors.grey,
                           ),
                         ),
-                        suffixIcon: InkWell(
-                          child: Icon(Icons.visibility),
-                          onTap: () {
-                            setState(() {
-                              isvisible2 = !isvisible2;
-                            });
-                          },
-                        )),
+                      ),
+                    validator:  (value) {
+                      if (value!.isEmpty || value.length<6) {
+                        return 'Enter a valid password!....';
+                      }
+                      else if(password.text!= confirmpassword.text){
+                        return "Enter correct password";
+
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                SizedBox(
-                  width: 258.w,
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'By clicking the ',
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                            color: Color(0xFF676767),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          )),
-                        ),
-                        TextSpan(
-                          text: 'Register',
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                            color: Color(0xFFFF4B26),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          )),
-                        ),
-                        TextSpan(
-                            text: ' button, you agree to the public offer',
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  SizedBox(
+                    width: 258.w,
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'By clicking the ',
                             style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                               color: Color(0xFF676767),
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
-                            ))),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                GestureDetector(onTap: (){
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>BottamNavigationBar()),(route)=>false);
-
-                },
-                  child: Container(
-                    width: 317.w,
-                    height: 55.h,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFF73658),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.r)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Create Account',
-                        style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
-                        )),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Center(
-                  child: Text(
-                    '- OR Continue with -',
-                    style: GoogleFonts.montserrat(
-                        textStyle: TextStyle(
-                      color: Color(0xFF575757),
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                    )),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 54.w,
-                      height: 54.h,
-                      padding: EdgeInsets.all(15.sp),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFBF3F5),
-                        shape: RoundedRectangleBorder(
-                          side:
-                              BorderSide(width: 1.w, color: Color(0xFFF73658)),
-                          borderRadius: BorderRadius.circular(50.r),
-                        ),
-                      ),
-                      child: Image.asset("assets/e.png"),
-                    ),
-                    SizedBox(width: 10.w),
-                    GestureDetector(onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Phonenumber()));
-
-                    },
-                      child: Container(
-                        width: 54.w,
-                        height: 54.h,
-                        padding: EdgeInsets.all(15.sp),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFBF3F5),
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1.w, color: Color(0xFFF73658)),
-                            borderRadius: BorderRadius.circular(50.r),
+                            )),
                           ),
-                        ),
-                        child: Image.asset("assets/f.png"),
+                          TextSpan(
+                            text: 'Register',
+                            style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                              color: Color(0xFFFF4B26),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                            )),
+                          ),
+                          TextSpan(
+                              text: ' button, you agree to the public offer',
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                color: Color(0xFF676767),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ))),
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'I Already Have an Account',
-                      //  textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  GestureDetector(onTap: () async {
+                    final isValid = _formKey.currentState!.validate();
+    if (isValid) {
+                 await  auth.createUserWithEmailAndPassword(email: email.text, password: password.text).then((onValue){
+                     firestore.doc(auth.currentUser!.uid.toString()).set({
+                      "email":email.text,
+                       "id":auth.currentUser!.uid.toString(),
+                       "profile":"",
+                       "name":""
+                     });
+                     Fluttertoast.showToast(msg: 'Successfully registerd');
+                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>BottamNavigationBar()),(route)=>false);
+                     CheckLogin(); CheckLogin();
+                   }).onError((error, StackTrace) {
+                     Fluttertoast.showToast(msg: error.toString());
+                   });}
+                    _formKey.currentState?.save();
+
+                  },
+                    child: Container(
+                      width: 317.w,
+                      height: 55.h,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFF73658),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.r)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Create Account',
+                          style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                          )),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  Center(
+                    child: Text(
+                      '- OR Continue with -',
+                      style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                         color: Color(0xFF575757),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
                       )),
                     ),
-                    SizedBox(width: 5.w),
-                    GestureDetector(onTap: (){
-                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Login()),(route)=>false);
-                    },
-                      child: Text(
-                        'Login',
-                        //textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                color: Color(0xFFF73658),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Color(0xFFF73658))),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(onTap: (){
+                        signInwithGoogle();
+                      },
+                        child: Container(
+                          width: 54.w,
+                          height: 54.h,
+                          padding: EdgeInsets.all(15.sp),
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFBF3F5),
+                            shape: RoundedRectangleBorder(
+                              side:
+                                  BorderSide(width: 1.w, color: Color(0xFFF73658)),
+                              borderRadius: BorderRadius.circular(50.r),
+                            ),
+                          ),
+                          child: Image.asset("assets/e.png"),
+                        ),
                       ),
-                    )
-                  ],
-                )
-              ],
+                      SizedBox(width: 10.w),
+                      GestureDetector(onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Phonenumber()));
+
+                      },
+                        child: Container(
+                          width: 54.w,
+                          height: 54.h,
+                          padding: EdgeInsets.all(15.sp),
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFBF3F5),
+                            shape: RoundedRectangleBorder(
+                              side:
+                                  BorderSide(width: 1.w, color: Color(0xFFF73658)),
+                              borderRadius: BorderRadius.circular(50.r),
+                            ),
+                          ),
+                          child: Image.asset("assets/f.png"),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'I Already Have an Account',
+                        //  textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                          color: Color(0xFF575757),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                        )),
+                      ),
+                      SizedBox(width: 5.w),
+                      GestureDetector(onTap: (){
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>Login()),(route)=>false);
+                      },
+                        child: Text(
+                          'Login',
+                          //textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                  color: Color(0xFFF73658),
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Color(0xFFF73658))),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+  Future<String?> signInwithGoogle() async {
+    CheckLogin();
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+      await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      await auth.signInWithCredential(credential).then((onValue) {
+        firestore.doc(auth.currentUser!.uid.toString()).set({
+          "name": auth.currentUser!.displayName.toString(),
+          "id": auth.currentUser!.uid.toString(),
+          "email":auth.currentUser!.email.toString(),
+          "profile":auth.currentUser!.photoURL.toString(),
+        });
+        Fluttertoast.showToast(msg: "Success Login");
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => BottamNavigationBar()),(route)=>false);
+      }).onError((error, stackTrace) {
+        Fluttertoast.showToast(msg: error.toString());
+      });
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      throw e;
+    }
+  }
+
+  void CheckLogin() async {
+    // Obtain shared preferences.
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("Token", true);
   }
 }

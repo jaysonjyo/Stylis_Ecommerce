@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248550686469",
+    "project_id": "ecommerce-d826a",
+    "storage_bucket": "ecommerce-d826a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248550686469:android:4e177b036d30b653bb016c",
+        "android_client_info": {
+          "package_name": "com.example.stylis_ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsdXZBYT-g2fnC7GvGrqtDM6krmKdMxtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

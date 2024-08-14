@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:stylis_ecommerce/Splash_Slider/Splash.dart';
-import 'package:stylis_ecommerce/Starindro.dart';
+import 'package:stylis_ecommerce/Splash_Slider/Startindro.dart';
 import 'package:stylis_ecommerce/authentication/Login.dart';
 
 class Onboard extends StatefulWidget {
@@ -29,7 +29,8 @@ class _OnboardState extends State<Onboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: IntroductionScreen(bodyPadding: EdgeInsets.only(top: 100.h),
+      body: IntroductionScreen(
+        bodyPadding: EdgeInsets.only(top: 100.h),
         key: introKey,
         globalBackgroundColor: Colors.white,
         allowImplicitScrolling: false,
@@ -54,20 +55,18 @@ class _OnboardState extends State<Onboard> {
               fontWeight: FontWeight.w800,
               ),
               ),),
-              bodyWidget: SizedBox(
-                width: 340.w,
-                child: Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.montserrat(
-                    textStyle:TextStyle(
-                    color: Color(0xFFA8A8A9),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.28.w,
-                  ),
+              bodyWidget: Text(
+                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.montserrat(
+                  textStyle:TextStyle(
+                  color: Color(0xFFA8A8A9),
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.28.w,
                 ),
-              )),
+              ),
+                            ),
               image: SizedBox(height: 300.h,width: 300.w,child: Image.asset("assets/b.png",fit: BoxFit.cover,))),
           //second
           PageViewModel(
@@ -81,20 +80,18 @@ class _OnboardState extends State<Onboard> {
                   fontWeight: FontWeight.w800,
                 ),
               ) ),
-              bodyWidget: SizedBox(
-                width: 340.w,
-    child: Text(
-    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
-    textAlign: TextAlign.center,
-    style:GoogleFonts.montserrat(
-    textStyle: TextStyle(
-    color: Color(0xFFA8A8A9),
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w600,
-    letterSpacing: 0.28.sp,
-    ),
-    ),
-    ),),
+              bodyWidget: Text(
+              'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
+              textAlign: TextAlign.center,
+              style:GoogleFonts.montserrat(
+              textStyle: TextStyle(
+              color: Color(0xFFA8A8A9),
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.28.sp,
+              ),
+              ),
+              ),
               image: SizedBox( width: 350.w,
     height: 233.33.h,child: Image.asset("assets/c.png",fit: BoxFit.cover,))
           ),
@@ -111,20 +108,18 @@ class _OnboardState extends State<Onboard> {
                 fontWeight: FontWeight.w800,
               ),
             ),),
-              bodyWidget:SizedBox(
-              width: 340.w,
-              child: Text(
-    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
-    textAlign: TextAlign.center,
-    style:GoogleFonts.montserrat(
-      textStyle:  TextStyle(
-    color: Color(0xFFA8A8A9),
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w600,
-    letterSpacing: 0.28.w,
-    ),
-    ),
-    )),
+              bodyWidget:Text(
+                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
+                  textAlign: TextAlign.center,
+                  style:GoogleFonts.montserrat(
+                    textStyle:  TextStyle(
+                  color: Color(0xFFA8A8A9),
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.28.w,
+                  ),
+                  ),
+                  ),
               image: SizedBox(  width: 350.w,
     height: 350.h,child: Image.asset("assets/d.png",fit: BoxFit.cover,))),
         ],
@@ -138,18 +133,14 @@ class _OnboardState extends State<Onboard> {
         //rtl: true, // Display as right-to-left
         back: const Icon(Icons.arrow_back),
         skip: Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
-        next:SizedBox(
-          width: 44.w,
-          height: 22.85.h,
-          child: Text(
-            'Next',
-            textAlign: TextAlign.center,
-            style:GoogleFonts.montserrat(textStyle:  TextStyle(
-              color: Color(0xFFF73658),
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-            ),)
-          ),
+        next:Text(
+          'Next',
+          textAlign: TextAlign.center,
+          style:GoogleFonts.montserrat(textStyle:  TextStyle(
+            color: Color(0xFFF73658),
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w600,
+          ),)
         ),
         done: Text(
           'Get Started',
