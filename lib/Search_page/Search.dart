@@ -104,7 +104,7 @@ class _SearchState extends State<Search> {
                                   children: [
                                     SizedBox(height: 5.h,),
                                     Text(
-                                      'Black Winter...',
+                                      'Black Winter...',maxLines: 1,
                                       style: GoogleFonts.montserrat(textStyle:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.sp,
@@ -114,7 +114,7 @@ class _SearchState extends State<Search> {
                                     ),
                                     SizedBox(height: 3.h,),
                                     Text(
-                                      'Autumn And Winter Casual cotton-padded jacket...',maxLines: 1,
+                                      'Autumn And Winter Casual cotton-padded jacket...',maxLines: 2,
                                       style:GoogleFonts.montserrat(textStyle:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.sp,

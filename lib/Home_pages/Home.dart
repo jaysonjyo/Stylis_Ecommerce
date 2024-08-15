@@ -22,9 +22,9 @@ class _HomeState extends State<Home> {
 
   int curentindex = 0;
   final firestore = FirebaseFirestore.instance.collection("Beauty").snapshots();
+  final firestore1 = FirebaseFirestore.instance.collection("Adds").snapshots();
   final firestore2 = FirebaseFirestore.instance.collection("Deal_of_the_Day").snapshots();
   final firestore3 = FirebaseFirestore.instance.collection("Trending_Products").snapshots();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,7 +226,7 @@ class _HomeState extends State<Home> {
                           return Column(
                             children: [
                               GestureDetector(onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Category()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Category(product:snapshot.data!.docs[index]["product"] ,)));
                               },
                                 child: Container(
                                     width: 56.w,
@@ -234,7 +234,7 @@ class _HomeState extends State<Home> {
                                     decoration: ShapeDecoration(
                                       image: DecorationImage(
                                         image: NetworkImage(
-                                            "https://via.placeholder.com/343x189"),
+                                            snapshot.data!.docs[index]["image"].toString()),
                                         fit: BoxFit.fill,
                                       ),
                                       shape: OvalBorder(),
@@ -251,7 +251,7 @@ class _HomeState extends State<Home> {
                                     color: Color(0xFF21003D),
                                     fontSize: 10.sp,
                                     fontWeight: FontWeight.w400,
-                                    height: 0.16.h,
+
                                   ),
                                 ),
                               )
@@ -271,59 +271,71 @@ class _HomeState extends State<Home> {
               Container(
                 width: 343.w,
                 height: 220.h,
-                child: Column(
-                  children: [
-                    CarouselSlider.builder(
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, int itemIndex,
-                              int pageViewIndex) =>
-                          Container(
-                        width: 343.w,
-                        height: 189.h,
-                        decoration: ShapeDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://via.placeholder.com/343x189"),
-                            fit: BoxFit.fill,
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: firestore1,
+                  builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
+    if(!snapshot.hasData){
+    return Center(child: CircularProgressIndicator(),);
+    }if(snapshot.hasError){
+    return Center(child: Text("Error"),);
+    }if(snapshot.hasData){
+                    return Column(
+                      children: [
+                        CarouselSlider.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (BuildContext context, int itemIndex,
+                                  int pageViewIndex) =>
+                              Container(
+                            width: 343.w,
+                            height: 189.h,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                   snapshot.data!.docs[itemIndex]["image"].toString()),
+                                fit: BoxFit.fill,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                          options: CarouselOptions(
+                            height: 189.h,
+                            viewportFraction: 1,
+                            initialPage: 0,
+                            enableInfiniteScroll: true,
+                            reverse: false,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 3),
+                            autoPlayAnimationDuration: Duration(milliseconds: 800),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            enlargeCenterPage: true,
+                            enlargeFactor: 0.3,
+                            scrollDirection: Axis.horizontal,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                curentindex = index;
+                              });
+                            },
                           ),
                         ),
-                      ),
-                      options: CarouselOptions(
-                        height: 189.h,
-                        viewportFraction: 1,
-                        initialPage: 0,
-                        enableInfiniteScroll: true,
-                        reverse: false,
-                        autoPlay: false,
-                        autoPlayInterval: Duration(seconds: 3),
-                        autoPlayAnimationDuration: Duration(milliseconds: 800),
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enlargeCenterPage: true,
-                        enlargeFactor: 0.3,
-                        scrollDirection: Axis.horizontal,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            curentindex = index;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5.h),
-                      child: AnimatedSmoothIndicator(
-                        activeIndex: curentindex,
-                        count: 3,
-                        effect: WormEffect(
-                            dotColor: Color(0xFFDEDBDB),
-                            dotHeight: 10.h,
-                            dotWidth: 10.w,
-                            activeDotColor: Color(0xFFFFA3B3)),
-                      ),
-                    )
-                  ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5.h),
+                          child: AnimatedSmoothIndicator(
+                            activeIndex: curentindex,
+                            count: 3,
+                            effect: WormEffect(
+                                dotColor: Color(0xFFDEDBDB),
+                                dotHeight: 10.h,
+                                dotWidth: 10.w,
+                                activeDotColor: Color(0xFFFFA3B3)),
+                          ),
+                        )
+                      ],
+                    );}else{
+      return SizedBox();
+    }
+                  }
                 ),
               ),
               Container(
@@ -433,7 +445,18 @@ SizedBox(height: 5.h,),
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return GestureDetector(onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProductDetails()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProductDetails(
+                              listimage:snapshot.data!.docs[index]["listimage"],
+                              title:snapshot.data!.docs[index]["title"].toString(),
+                              rating:snapshot.data!.docs[index]["rating"].toString(),
+                              priceoffer: snapshot.data!.docs[index]["priceoffer"].toString().toString(),
+                              price:snapshot.data!.docs[index]["price"].toString().toString() ,
+                              offer:snapshot.data!.docs[index]["offer"].toString() ,
+                              description:snapshot.data!.docs[index]["description"].toString(),
+                              id:snapshot.data!.docs[index]["id"].toString(),
+                              about:snapshot.data!.docs[index]["about"].toString(),
+
+                            )));
                           },
                             child: Container(
                               width: 170.w,
@@ -445,7 +468,7 @@ SizedBox(height: 5.h,),
                               ),
                               child: Column(
                                 children: [
-                                  Image.asset("assets/i.png",fit: BoxFit.cover,),
+                                  Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover,),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 6.h),
                                     child: Column(
@@ -457,7 +480,7 @@ SizedBox(height: 5.h,),
                                         SizedBox(
                                           width: 162.w,
                                           child: Text(
-                                            snapshot.data!.docs[index]["title"].toString(),
+                                            snapshot.data!.docs[index]["title"].toString(),maxLines: 1,
                                             style: GoogleFonts.montserrat(
                                                 textStyle: TextStyle(
                                               color: Colors.black,
@@ -483,7 +506,7 @@ SizedBox(height: 5.h,),
                                           height: 5.h,
                                         ),
                                         Text(
-                                           snapshot.data!.docs[index]["price"].toString(),
+                                            "₹${snapshot.data!.docs[index]["price"].toString().toString()}",
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                 color: Colors.black,
@@ -497,7 +520,7 @@ SizedBox(height: 5.h,),
                                         Row(
                                           children: [
                                             Text(
-                                        snapshot.data!.docs[index]["priceoffer"].toString().toString(),
+                                        "₹${snapshot.data!.docs[index]["priceoffer"].toString().toString()}",
                                               //'₹4999'
                                               style: GoogleFonts.montserrat(
                                                 textStyle: TextStyle(
@@ -510,7 +533,7 @@ SizedBox(height: 5.h,),
                                             ),
                                             SizedBox(width: 5.w,),
                                             Text(
-                                              snapshot.data!.docs[index]["offer"].toString(),
+                                              " ${snapshot.data!.docs[index]["offer"].toString()}%Off",
                                               //'50%Off',
                                               style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
@@ -713,25 +736,35 @@ SizedBox(height: 5.h,),
               SizedBox(
                 height: 20.h,
               ),
-              SizedBox(
-                width: double.infinity.w,
-                height: 186.h,
-                child: StreamBuilder<QuerySnapshot>(
+              StreamBuilder<QuerySnapshot>(
 
-                  stream: firestore3,
-                  builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if(!snapshot.hasData){
-                      return Center(child: CircularProgressIndicator(),);
-                    }if(snapshot.hasError){
-                      return Center(child: Text("Error"),);
-                    }
-                    if(snapshot.hasData){
-                    return ListView.separated(
+                stream: firestore3,
+                builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if(!snapshot.hasData){
+                    return Center(child: CircularProgressIndicator(),);
+                  }if(snapshot.hasError){
+                    return Center(child: Text("Error"),);
+                  }
+                  if(snapshot.hasData){
+                  return SizedBox(
+                    width: double.infinity.w,
+                    height: 186.h,
+                    child: ListView.separated(
                       itemCount: snapshot.data!.docs.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProductDetails()));
+                         Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProductDetails(
+                           listimage:snapshot.data!.docs[index]["listimage"],
+                           title:snapshot.data!.docs[index]["title"].toString(),
+                           rating:snapshot.data!.docs[index]["rating"].toString(),
+                           priceoffer: snapshot.data!.docs[index]["priceoffer"].toString().toString(),
+                           price:snapshot.data!.docs[index]["price"].toString().toString() ,
+                           offer:snapshot.data!.docs[index]["offer"].toString() ,
+                           description:snapshot.data!.docs[index]["description"].toString(),
+                           id: snapshot.data!.docs[index]["id"].toString(),
+                           about:snapshot.data!.docs[index]["about"].toString(),
+                         )));
                         },
                           child: Container(
                               width: 142.w,
@@ -743,17 +776,15 @@ SizedBox(height: 5.h,),
                               ),
                               child: Column(
                                 children: [
-                                  Image.asset("assets/k.png"),
+                                  Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover,width: 142.w,height: 110.h,),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 6.w),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
+
                                         Text(
-                                          snapshot.data!.docs[index]["title"].toString(),
+                                          snapshot.data!.docs[index]["title"].toString(),maxLines: 1,
                                           style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                             color: Colors.black,
@@ -762,7 +793,7 @@ SizedBox(height: 5.h,),
                                           )),
                                         ),
                                         Text(
-                                          snapshot.data!.docs[index]["price"].toString(),
+                                          "₹${snapshot.data!.docs[index]["price"].toString().toString()}",
                                           style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                             color: Colors.black,
@@ -773,7 +804,7 @@ SizedBox(height: 5.h,),
                                         Row(
                                           children: [
                                             Text(
-                                              snapshot.data!.docs[index]["priceoffer"].toString(),
+                                              "₹${snapshot.data!.docs[index]["priceoffer"].toString().toString()}",
                                               style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
                                                 decoration:
@@ -785,7 +816,7 @@ SizedBox(height: 5.h,),
                                             ),
                                             SizedBox(width: 5.w,),
                                             Text(
-                                              snapshot.data!.docs[index]["offer"].toString(),
+                                              "${snapshot.data!.docs[index]["offer"].toString().toString()}%Off",
                                               style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
                                                       color: Color(0xFFFE735C),
@@ -807,11 +838,11 @@ SizedBox(height: 5.h,),
                           width: 15.w,
                         );
                       },
-                    );}else{
-                      return SizedBox();
-                    }
+                    ),
+                  );}else{
+                    return SizedBox();
                   }
-                ),
+                }
               ),
             ],
           ),

@@ -138,7 +138,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Edit()));
                         width: 150.w,
                         height: 20.h,
                         child: Text(
-                          "Order",
+                          "My Order",
                           style: GoogleFonts.plusJakartaSans(
                               textStyle: TextStyle(
                                   color: Colors.black,
