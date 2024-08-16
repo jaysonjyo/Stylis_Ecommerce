@@ -10,6 +10,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylis_ecommerce/Favourites_Cart_page/Cart.dart';
 import 'package:stylis_ecommerce/Home_pages/Product_Details.dart';
 import 'package:stylis_ecommerce/Home_pages/category.dart';
+import 'package:stylis_ecommerce/Search_page/Search.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -108,7 +109,12 @@ class _HomeState extends State<Home> {
                       suffixIcon: Icon(
                         Icons.keyboard_voice_rounded,
                         color: Color(0xFFBBBBBB),
-                      )),
+                      )),onTap: (){
+                    setState(() {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Search()));
+
+                    });
+                },
                 ),
               ),
               SizedBox(
@@ -468,7 +474,8 @@ SizedBox(height: 5.h,),
                               ),
                               child: Column(
                                 children: [
-                                  Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover,),
+                                  ClipRRect(borderRadius: BorderRadius.only(topRight: Radius.circular(6.r),topLeft:Radius.circular(6.r) ),
+                                      child: Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover)),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 6.h),
                                     child: Column(
@@ -737,7 +744,6 @@ SizedBox(height: 5.h,),
                 height: 20.h,
               ),
               StreamBuilder<QuerySnapshot>(
-
                 stream: firestore3,
                 builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                   if(!snapshot.hasData){
@@ -776,7 +782,8 @@ SizedBox(height: 5.h,),
                               ),
                               child: Column(
                                 children: [
-                                  Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover,width: 142.w,height: 110.h,),
+                                  ClipRRect(borderRadius: BorderRadius.only(topRight: Radius.circular(6.r),topLeft:Radius.circular(6.r) ),
+                                      child: Image.network(snapshot.data!.docs[index]["listimage"][0].toString(),fit: BoxFit.cover,width: 142.w,height: 110.h,)),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 6.w),
                                     child: Column(

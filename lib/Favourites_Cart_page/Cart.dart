@@ -102,11 +102,13 @@ class _CartState extends State<Cart> {
                                   child: Column(
 
                                     children: [
-                                      SizedBox(width: 164.w,
-                                          height: 136.h,
-                                          child: Image.network(snapshot.data!
-                                              .docs[index]["listimage"][0]
-                                              .toString(), fit: BoxFit.cover,)),
+                                      ClipRRect(borderRadius: BorderRadius.only(topRight: Radius.circular(6.r),topLeft:Radius.circular(6.r) ),
+                                        child: SizedBox(width: 164.w,
+                                            height: 136.h,
+                                            child: Image.network(snapshot.data!
+                                                .docs[index]["listimage"][0]
+                                                .toString(), fit: BoxFit.cover,)),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 5.w
