@@ -1,21 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stylis_ecommerce/Home_pages/Product_Details.dart';
-import 'package:stylis_ecommerce/Shopping_page/Shopping_payment.dart';
 
-class Order extends StatefulWidget {
-  const Order({super.key});
+class My_Order extends StatefulWidget {
+  const My_Order({super.key});
 
   @override
-  State<Order> createState() => _OrderState();
+  State<My_Order> createState() => _My_OrderState();
 }
 
-class _OrderState extends State<Order> {
+class _My_OrderState extends State<My_Order> {
 
   @override
   Widget build(BuildContext context) {

@@ -29,7 +29,7 @@ class _SearchState extends State<Search> {
       )),
         backgroundColor: Colors.white,
       ),
-      backgroundColor: Colors.grey,
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
@@ -110,147 +110,148 @@ class _SearchState extends State<Search> {
                             snapshot.data!.docs.length,
                             (index) {
                               final title = snapshot.data!.docs[index]["title"]
-                                  .toString();
-                              if (search.text.isEmpty) {
-                                return SizedBox();
-                              } else if (title.toLowerCase().contains(search.text.toLowerCase().toString())) {
-                                return GestureDetector(
-                                  onTap: () {
-                                  },
-                                  child: Container(
-                                    width: 164.w,
-                                    height: 245.h,
-                                    decoration: ShapeDecoration(
-                                      color: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r)),
-                                      shadows: [
-                                        BoxShadow(
-                                          color: Color(0x26000000),
-                                          blurRadius: 2.r,
-                                          offset: Offset(0, 2),
-                                          spreadRadius: 0.r,
-                                        )
-                                      ],
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(6.r),
-                                              topLeft: Radius.circular(6.r)),
-                                          child: SizedBox(
-                                              width: 164.w,
-                                              height: 136.h,
-                                              child: Image.network(
-                                                snapshot.data!
-                                                    .docs[index]["listimage"][0]
-                                                    .toString(),
-                                                fit: BoxFit.cover,
-                                              )),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.w),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height: 5.h,
-                                              ),
-                                              Text(
-                                                snapshot
-                                                    .data!.docs[index]["title"]
-                                                    .toString(),
-                                                maxLines: 1,
-                                                style: GoogleFonts.montserrat(
-                                                    textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                )),
-                                              ),
-                                              SizedBox(
-                                                height: 3.h,
-                                              ),
-                                              Text(
-                                                snapshot
-                                                    .data!.docs[index]["about"]
-                                                    .toString(),
-                                                maxLines: 2,
-                                                style: GoogleFonts.montserrat(
-                                                    textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 10.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                )),
-                                              ),
-                                              SizedBox(
-                                                height: 3.h,
-                                              ),
-                                              Text(
-                                                "₹${snapshot.data!.docs[index]["price"].toString()}",
-                                                style: GoogleFonts.montserrat(
-                                                    textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                )),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  RatingBar.builder(
-                                                    itemSize: 14.sp,
-                                                    tapOnlyMode: true,
-                                                    initialRating: double.parse(
-                                                        snapshot
-                                                            .data!
-                                                            .docs[index]
-                                                                ["rating"]
-                                                            .toString()),
-                                                    minRating: 1,
-                                                    direction: Axis.horizontal,
-                                                    allowHalfRating: true,
-                                                    itemCount: 5,
-                                                    itemBuilder: (context, _) =>
-                                                        Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                    ),
-                                                    onRatingUpdate: (rating) {
-                                                      print(rating);
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5.w,
-                                                  ),
-                                                  Text(
-                                                    '1,52,344',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            textStyle:
-                                                                TextStyle(
-                                                      color: Color(0xFFA4A9B3),
-                                                      fontSize: 10.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    )),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                .toString();
+                            if (search.text.isEmpty) {
+                              return SizedBox();
+                            } else if (title.toLowerCase().contains(search.text.toLowerCase().toString())) {
+                              return GestureDetector(
+                                onTap: () {
+                                },
+                                child: Container(
+                                  width: 164.w,
+                                  height: 245.h,
+                                  decoration: ShapeDecoration(
+                                    color: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(8.r)),
+                                    shadows: [
+                                      BoxShadow(
+                                        color: Color(0x26000000),
+                                        blurRadius: 2.r,
+                                        offset: Offset(0, 2),
+                                        spreadRadius: 0.r,
+                                      )
+                                    ],
                                   ),
-                                );
-                              } else {
-                                return SizedBox();
-                              }
+                                  child: Column(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(6.r),
+                                            topLeft: Radius.circular(6.r)),
+                                        child: SizedBox(
+                                            width: 164.w,
+                                            height: 136.h,
+                                            child: Image.network(
+                                              snapshot.data!
+                                                  .docs[index]["listimage"][0]
+                                                  .toString(),
+                                              fit: BoxFit.cover,
+                                            )),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5.w),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Text(
+                                              snapshot
+                                                  .data!.docs[index]["title"]
+                                                  .toString(),
+                                              maxLines: 1,
+                                              style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  )),
+                                            ),
+                                            SizedBox(
+                                              height: 3.h,
+                                            ),
+                                            Text(
+                                              snapshot
+                                                  .data!.docs[index]["about"]
+                                                  .toString(),
+                                              maxLines: 2,
+                                              style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                            ),
+                                            SizedBox(
+                                              height: 3.h,
+                                            ),
+                                            Text(
+                                              "₹${snapshot.data!.docs[index]["price"].toString()}",
+                                              style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                RatingBar.builder(
+                                                  itemSize: 14.sp,
+                                                  tapOnlyMode: true,
+                                                  initialRating: double.parse(
+                                                      snapshot
+                                                          .data!
+                                                          .docs[index]
+                                                      ["rating"]
+                                                          .toString()),
+                                                  minRating: 1,
+                                                  direction: Axis.horizontal,
+                                                  allowHalfRating: true,
+                                                  itemCount: 5,
+                                                  itemBuilder: (context, _) =>
+                                                      Icon(
+                                                        Icons.star,
+                                                        color: Colors.amber,
+                                                      ),
+                                                  onRatingUpdate: (rating) {
+                                                    print(rating);
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Text(
+                                                  '1,52,344',
+                                                  style:
+                                                  GoogleFonts.montserrat(
+                                                      textStyle:
+                                                      TextStyle(
+                                                        color: Color(0xFFA4A9B3),
+                                                        fontSize: 10.sp,
+                                                        fontWeight:
+                                                        FontWeight.w400,
+                                                      )),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return SizedBox();
+                            }
                             },
+
                           ),
                         );
                       } else {
