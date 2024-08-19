@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:order_tracker/order_tracker.dart';
 import 'package:stylis_ecommerce/Home_pages/Product_Details.dart';
+
+import 'Order_Track.dart';
 
 class My_Order extends StatefulWidget {
   const My_Order({super.key});
@@ -200,15 +203,17 @@ class _My_OrderState extends State<My_Order> {
                             return GestureDetector(onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) =>
-                                      ProductDetails(listimage: snapshot.data!.docs[index]["listimage"],
-                                          title: snapshot.data!.docs[index]["title"].toString(),
-                                          rating: snapshot.data!.docs[index]["rating"].toString(),
-                                          priceoffer: snapshot.data!.docs[index]["priceoffer"].toString(),
-                                          price: snapshot.data!.docs[index]["price"].toString(),
-                                          offer: snapshot.data!.docs[index]["offer"].toString(),
-                                          description: snapshot.data!.docs[index]["description"].toString(),
-                                          id: snapshot.data!.docs[index]["id"].toString(),
-                                          about: snapshot.data!.docs[index]["about"].toString())));
+                                      OrderTrack()
+                                      // ProductDetails(listimage: snapshot.data!.docs[index]["listimage"],
+                                      //     title: snapshot.data!.docs[index]["title"].toString(),
+                                      //     rating: snapshot.data!.docs[index]["rating"].toString(),
+                                      //     priceoffer: snapshot.data!.docs[index]["priceoffer"].toString(),
+                                      //     price: snapshot.data!.docs[index]["price"].toString(),
+                                      //     offer: snapshot.data!.docs[index]["offer"].toString(),
+                                      //     description: snapshot.data!.docs[index]["description"].toString(),
+                                      //     id: snapshot.data!.docs[index]["id"].toString(),
+                                      //     about: snapshot.data!.docs[index]["about"].toString())
+                              ));
                             },
                               child: Container(
                                 width: 331.w,

@@ -60,7 +60,8 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
       "priceoffer":widget.priceoffer,
       "description":widget.description,
       "about":widget.about,
-      "id":widget.id
+      "id":widget.id,
+      "status":"Order Placed"
 
     }).then((onValue) {
       Navigator.of(context).pop();
