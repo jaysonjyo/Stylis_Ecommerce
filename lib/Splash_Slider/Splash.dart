@@ -32,8 +32,6 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Row(mainAxisAlignment: MainAxisAlignment.center,
-
-
         children: [
         Center(
           child: Container(width: 124.99.w,

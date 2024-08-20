@@ -31,6 +31,7 @@ class _OrderTrackState extends State<OrderTrack> {
 
   List<TextDto> deliveredList = [
     TextDto("Your order has been delivered", "Thu, 31th Mar '22 - 3:58pm"),
+
   ];
 
   @override

@@ -3,11 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:stylis_ecommerce/Home_pages/Product_Details.dart';
 
 import '../Shopping_page/Shopping_payment.dart';
+import '../Toast_message.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -17,7 +19,7 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
- // final firstoreorder = FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid.toString()).collection("order");
+  final firstoreorder = FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid.toString()).collection("order");
   // payment for any payments
 
   void handlePaymentErrorResponse(PaymentFailureResponse response) {
@@ -32,24 +34,24 @@ class _CartState extends State<Cart> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
-    // firstoreorder.doc(widget.id).set({
-    //   "listimage":widget.listimage,
-    //   "title":widget.title,
-    //   "rating":widget.rating,
-    //   "price":widget.price,
-    //   "offer":widget.offer,
-    //   "priceoffer":widget.priceoffer,
-    //   "description":widget.description,
-    //   "about":widget.about,
-    //   "id":widget.id,
-    //   "status":"Order Placed"
-    //
-    // }).then((onValue) {
-    //   Navigator.of(context).pop();
-    //   Fluttertoast.showToast(msg: "Order succesfully");
-    // }).onError((error, stackTrace) =>
-    //     ToastMessage()
-    //         .toastmessage(message: error.toString()));
+   // firstoreorder.doc().set({
+   //    "listimage":,
+   //    "title":widget.title,
+   //    "rating":widget.rating,
+   //    "price":widget.price,
+   //    "offer":widget.offer,
+   //    "priceoffer":widget.priceoffer,
+   //    "description":widget.description,
+   //    "about":widget.about,
+   //    "id":widget.id,
+   //    "status":"Order Placed"
+   //
+   //  }).then((onValue) {
+   //    Navigator.of(context).pop();
+   //    Fluttertoast.showToast(msg: "Order succesfully");
+   //  }).onError((error, stackTrace) =>
+   //      ToastMessage()
+   //          .toastmessage(message: error.toString()));
 
     /*
     * Payment Success Response contains three values:
@@ -98,101 +100,113 @@ class _CartState extends State<Cart> {
         .collection("Cart");
 
     return Scaffold(
-      bottomSheet:  Container(
-      width: 393.w,
-      height: 100.h,
-      decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.r),
-                  topRight: Radius.circular(20.r)))),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              Text(
-              sum.toString(),
-              style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 7.h,
-            ),
-            Text(
-              'View Details',
-              style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                    color: Color(0xFFF73658),
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                  )),
-            )
-          ],
-        ),
-        GestureDetector(
-          onTap: () {
-            Razorpay razorpay = Razorpay();
-            var options = {
-              'key': 'rzp_test_gKANZdsNdLqaQs',
-              'amount': 100,
-              'name': 'Acme Corp.',
-              'description': 'Fine T-Shirt',
-              'retry': {'enabled': true, 'max_count': 1},
-              'send_sms_hash': true,
-              'prefill': {
-                'contact': '8888888888',
-                'email': 'test@razorpay.com'
-              },
-              'external': {
-                'wallets': ['paytm']
-              }
-            };
-            razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
-                handlePaymentErrorResponse);
-            razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                handlePaymentSuccessResponse);
-            razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                handleExternalWalletSelected);
-            razorpay.open(options);
-          },
-          child: Container(
-            width: 219.w,
-            height: 48.h,
-            decoration: ShapeDecoration(
-              color: Color(0xFFF73658),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.r)),
-            ),
-            child: Center(
-              child: Text(
-                'Proceed to Payment',
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17.sp,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: -0.41.w),
-                ),
-              ),
-            ),
-          ),
-        ),
-        ],
+      bottomSheet:  StreamBuilder<QuerySnapshot>(
+        stream: firstore,
+        builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
+          if(!snapshot.hasData){
+            return Center(child: CircularProgressIndicator(),);
+          }if(snapshot.hasError){
+            return Center(child: Text("Error"),);
+          }if(snapshot.hasData) {
+            return Container(
+                width: 393.w,
+                height: 100.h,
+                decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.r),
+                            topRight: Radius.circular(20.r)))),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            sum.toString(),
+                            style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          Text(
+                            'View Details',
+                            style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                                  color: Color(0xFFF73658),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                          )
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Razorpay razorpay = Razorpay();
+                          var options = {
+                            'key': 'rzp_test_gKANZdsNdLqaQs',
+                            'amount': 100,
+                            'name': 'Acme Corp.',
+                            'description': 'Fine T-Shirt',
+                            'retry': {'enabled': true, 'max_count': 1},
+                            'send_sms_hash': true,
+                            'prefill': {
+                              'contact': '8888888888',
+                              'email': 'test@razorpay.com'
+                            },
+                            'external': {
+                              'wallets': ['paytm']
+                            }
+                          };
+                          razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+                              handlePaymentErrorResponse);
+                          razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
+                              handlePaymentSuccessResponse);
+                          razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
+                              handleExternalWalletSelected);
+                          razorpay.open(options);
+                        },
+                        child: Container(
+                          width: 219.w,
+                          height: 48.h,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFF73658),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.r)),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Proceed to Payment',
+                              style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.sp,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: -0.41.w),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ));
+          }else{
+            return SizedBox();
+          }
+        }
       ),
-    )),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
