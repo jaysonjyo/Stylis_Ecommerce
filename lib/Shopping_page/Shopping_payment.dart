@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../Toast_message.dart';
@@ -51,7 +52,8 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
-    firstoreorder.doc(widget.id).set({
+    final auth = FirebaseAuth.instance;
+    firstoreorder.doc(auth.currentUser!.uid.toString()).set({
       "listimage":widget.listimage,
       "title":widget.title,
       "rating":widget.rating,
@@ -61,7 +63,8 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
       "description":widget.description,
       "about":widget.about,
       "id":widget.id,
-      "status":"Order Placed"
+      "status":"Order Placed",
+      "date":'${date.day.toString()} ${DateFormat('MMM').format(date)} ${date.year.toString()}'
 
     }).then((onValue) {
       Navigator.of(context).pop();
@@ -104,6 +107,7 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
       },
     );
   }
+  final date = DateTime.now().add(Duration(days: 7));
 
   //payment ended function
   @override
@@ -155,7 +159,7 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
                 SizedBox(
                   width: 10.w,
                 ),
-                Column(
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       width: 188.w,
@@ -186,7 +190,7 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
                         )),
                       ),
                     ),
-                    Row(
+                    Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('Delivery by ',
                             style: GoogleFonts.montserrat(
@@ -197,11 +201,12 @@ class _ShoppingPaymentState extends State<ShoppingPayment> {
                                 letterSpacing: -0.30.w,
                               ),
                             )),
+                        SizedBox(width: 5.w,),
                         SizedBox(
                           width: 110.w,
                           height: 20.h,
                           child: Text(
-                            '10 May 2XXX',
+                            '${date.day.toString()} ${DateFormat('MMM').format(date)} ${date.year.toString()}',
                             style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                               color: Colors.black,

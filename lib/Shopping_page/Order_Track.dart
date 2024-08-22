@@ -4,13 +4,40 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:order_tracker/order_tracker.dart';
 
 class OrderTrack extends StatefulWidget {
-  const OrderTrack({super.key});
+  final String status;
+  const OrderTrack({super.key, required this.status});
+
 
   @override
   State<OrderTrack> createState() => _OrderTrackState();
+
 }
 
+
+
 class _OrderTrackState extends State<OrderTrack> {
+  late Status traking;
+  void Checkorderplaced (){
+    if(widget.status=="orderplaced"){
+setState(() {
+  traking= Status.order;
+});
+    }
+    else if (widget.status=="shipped"){
+      setState(() {
+        traking= Status.shipped;
+      });
+    }
+    else if (widget.status== "outofDelivery"){
+      setState(() {
+        traking =Status.outOfDelivery;
+      });
+    }else {
+      setState(() {
+        traking=Status.delivered;
+      });
+    }
+  }
   ///this TextDto present in a package add data in this dto and set in a list.
 
   List<TextDto> orderList = [
@@ -33,7 +60,12 @@ class _OrderTrackState extends State<OrderTrack> {
     TextDto("Your order has been delivered", "Thu, 31th Mar '22 - 3:58pm"),
 
   ];
-
+@override
+  void initState() {
+  Checkorderplaced ();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +96,7 @@ class _OrderTrackState extends State<OrderTrack> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: OrderTracker(
-              status: Status.delivered,
+              status: traking,
               activeColor: Colors.green,
               inActiveColor: Colors.grey[300],
               orderTitleAndDateList: orderList,

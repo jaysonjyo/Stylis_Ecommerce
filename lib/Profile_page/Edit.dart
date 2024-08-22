@@ -93,7 +93,7 @@ class _EditState extends State<Edit> {
                                       image: NetworkImage(snapshot
                                           .data!.docs[widget.index]["profile"]
                                           .toString()),
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                     ),
                                     //image: NetworkImage(snapshot.data!.docs[index]["profile"].toString()),
                                     // fit: BoxFit.fill,

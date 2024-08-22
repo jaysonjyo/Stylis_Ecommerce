@@ -200,54 +200,54 @@ class _My_OrderState extends State<My_Order> {
                           itemCount: snapshot.data!.docs.length,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
-                            return GestureDetector(onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) =>
-                                      OrderTrack()
-                                      // ProductDetails(listimage: snapshot.data!.docs[index]["listimage"],
-                                      //     title: snapshot.data!.docs[index]["title"].toString(),
-                                      //     rating: snapshot.data!.docs[index]["rating"].toString(),
-                                      //     priceoffer: snapshot.data!.docs[index]["priceoffer"].toString(),
-                                      //     price: snapshot.data!.docs[index]["price"].toString(),
-                                      //     offer: snapshot.data!.docs[index]["offer"].toString(),
-                                      //     description: snapshot.data!.docs[index]["description"].toString(),
-                                      //     id: snapshot.data!.docs[index]["id"].toString(),
-                                      //     about: snapshot.data!.docs[index]["about"].toString())
-                              ));
-                            },
-                              child: Container(
-                                width: 331.w,
-                                height: 191.h,
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6.r)),
-                                  shadows: [
-                                    BoxShadow(
-                                      color: Color(0x3F000000),
-                                      blurRadius: 14.r,
-                                      offset: Offset(0, 6),
-                                      spreadRadius: -8.r,
-                                    ),
-                                    BoxShadow(
-                                      color: Color(0x3F000000),
-                                      blurRadius: 9.r,
-                                      offset: Offset(0, -4),
-                                      spreadRadius: -7.r,
-                                    )
-                                  ],
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment
-                                            .start,
-                                        mainAxisAlignment: MainAxisAlignment
-                                            .spaceEvenly,
-                                        children: [
-                                          SizedBox(
+                            return Container(
+                              width: 331.w,
+                              height: 191.h,
+                              decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6.r)),
+                                shadows: [
+                                  BoxShadow(
+                                    color: Color(0x3F000000),
+                                    blurRadius: 14.r,
+                                    offset: Offset(0, 6),
+                                    spreadRadius: -8.r,
+                                  ),
+                                  BoxShadow(
+                                    color: Color(0x3F000000),
+                                    blurRadius: 9.r,
+                                    offset: Offset(0, -4),
+                                    spreadRadius: -7.r,
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.h),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .spaceEvenly,
+                                      children: [
+                                        GestureDetector(onTap: ()   {
+                                          Navigator.of(context).push(MaterialPageRoute(
+                                              builder: (_) =>
+
+                                                  ProductDetails(listimage: snapshot.data!.docs[index]["listimage"],
+                                                      title: snapshot.data!.docs[index]["title"].toString(),
+                                                      rating: snapshot.data!.docs[index]["rating"].toString(),
+                                                      priceoffer: snapshot.data!.docs[index]["priceoffer"].toString(),
+                                                      price: snapshot.data!.docs[index]["price"].toString(),
+                                                      offer: snapshot.data!.docs[index]["offer"].toString(),
+                                                      description: snapshot.data!.docs[index]["description"].toString(),
+                                                      id: snapshot.data!.docs[index]["id"].toString(),
+                                                      about: snapshot.data!.docs[index]["about"].toString())
+                                          ));
+                                        },
+                                          child: SizedBox(
                                             width: 130.53.w,
                                             height: 125.h,
                                             child: Image.network(
@@ -257,11 +257,13 @@ class _My_OrderState extends State<My_Order> {
                                               fit: BoxFit.cover,
                                             ),
                                           ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .start,
-                                            children: [
-                                              Text(
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            SizedBox( width: 162.w,
+                                              child: Text(
                                                 snapshot.data!
                                                     .docs[index]["title"]
                                                     .toString(),
@@ -274,127 +276,132 @@ class _My_OrderState extends State<My_Order> {
                                                           .w600,
                                                     )),
                                               ),
-                                              SizedBox(height: 5.h,),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    'Variations : ',
-                                                    style: GoogleFonts
-                                                        .montserrat(
-                                                        textStyle: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 12.sp,
-                                                          fontWeight: FontWeight
-                                                              .w500,
-                                                        )),
-                                                  ), SizedBox(width: 5.h,),
-                                                  Container(
-                                                    width: 39.w,
-                                                    height: 17.h,
-                                                    decoration: ShapeDecoration(
-                                                      shape: RoundedRectangleBorder(
-                                                        side: BorderSide(
-                                                            width: 0.30.w,
-                                                            color: Color(
-                                                                0xFF0D0808)),
-                                                        borderRadius: BorderRadius
-                                                            .circular(2.r),
-                                                      ),
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        'Black',
-                                                        textAlign: TextAlign
-                                                            .center,
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                            textStyle: TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 10.sp,
-                                                              fontWeight: FontWeight
-                                                                  .w500,
-                                                            )),
-                                                      ),
+                                            ),
+                                            SizedBox(height: 5.h,),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Variations : ',
+                                                  style: GoogleFonts
+                                                      .montserrat(
+                                                      textStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight
+                                                            .w500,
+                                                      )),
+                                                ), SizedBox(width: 5.h,),
+                                                Container(
+                                                  width: 39.w,
+                                                  height: 17.h,
+                                                  decoration: ShapeDecoration(
+                                                    shape: RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                          width: 0.30.w,
+                                                          color: Color(
+                                                              0xFF0D0808)),
+                                                      borderRadius: BorderRadius
+                                                          .circular(2.r),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 7.w,
-                                                  ),
-                                                  Container(
-                                                    width: 39.w,
-                                                    height: 17.h,
-                                                    decoration: ShapeDecoration(
-                                                      shape: RoundedRectangleBorder(
-                                                        side: BorderSide(
-                                                            width: 0.30.w,
-                                                            color: Color(
-                                                                0xFF0D0808)),
-                                                        borderRadius: BorderRadius
-                                                            .circular(2.r),
-                                                      ),
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        'Red',
-                                                        textAlign: TextAlign
-                                                            .center,
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                            textStyle: TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 10.sp,
-                                                              fontWeight: FontWeight
-                                                                  .w500,
-                                                            )),
-                                                      ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Black',
+                                                      textAlign: TextAlign
+                                                          .center,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                          textStyle: TextStyle(
+                                                            color: Colors
+                                                                .black,
+                                                            fontSize: 10.sp,
+                                                            fontWeight: FontWeight
+                                                                .w500,
+                                                          )),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 4.h,),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    snapshot.data!
-                                                        .docs[index]["rating"]
-                                                        .toString(),
-                                                    style: GoogleFonts
-                                                        .montserrat(
-                                                        textStyle: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 12.sp,
-                                                          fontWeight: FontWeight
-                                                              .w500,
-                                                        )),
+                                                ),
+                                                SizedBox(
+                                                  width: 7.w,
+                                                ),
+                                                Container(
+                                                  width: 39.w,
+                                                  height: 17.h,
+                                                  decoration: ShapeDecoration(
+                                                    shape: RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                          width: 0.30.w,
+                                                          color: Color(
+                                                              0xFF0D0808)),
+                                                      borderRadius: BorderRadius
+                                                          .circular(2.r),
+                                                    ),
                                                   ),
-                                                  SizedBox(width: 5.w,),
-                                                  RatingBar.builder(
-                                                    itemSize: 11.66.sp,
-                                                    tapOnlyMode: true,
-                                                    initialRating: double.parse(
-                                                        snapshot.data!
-                                                            .docs[index]["rating"]
-                                                            .toString()),
-                                                    minRating: 1,
-                                                    direction: Axis.horizontal,
-                                                    allowHalfRating: true,
-                                                    itemCount: 5,
-                                                    itemBuilder: (context, _) =>
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
-                                                        ),
-                                                    onRatingUpdate: (rating) {
-                                                      print(rating);
-                                                    },
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Red',
+                                                      textAlign: TextAlign
+                                                          .center,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                          textStyle: TextStyle(
+                                                            color: Colors
+                                                                .black,
+                                                            fontSize: 10.sp,
+                                                            fontWeight: FontWeight
+                                                                .w500,
+                                                          )),
+                                                    ),
                                                   ),
-                                                ],
-                                              ), SizedBox(height: 8.h,),
-                                              Row(
-                                                children: [
-                                                  Container(
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 4.h,),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  snapshot.data!
+                                                      .docs[index]["rating"]
+                                                      .toString(),
+                                                  style: GoogleFonts
+                                                      .montserrat(
+                                                      textStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight
+                                                            .w500,
+                                                      )),
+                                                ),
+                                                SizedBox(width: 5.w,),
+                                                RatingBar.builder(
+                                                  itemSize: 11.66.sp,
+                                                  tapOnlyMode: true,
+                                                  initialRating: double.parse(
+                                                      snapshot.data!
+                                                          .docs[index]["rating"]
+                                                          .toString()),
+                                                  minRating: 1,
+                                                  direction: Axis.horizontal,
+                                                  allowHalfRating: true,
+                                                  itemCount: 5,
+                                                  itemBuilder: (context, _) =>
+                                                      Icon(
+                                                        Icons.star,
+                                                        color: Colors.amber,
+                                                      ),
+                                                  onRatingUpdate: (rating) {
+                                                    print(rating);
+                                                  },
+                                                ),
+                                              ],
+                                            ), SizedBox(height: 8.h,),
+                                            Row(
+                                              children: [
+                                                GestureDetector(onTap:(){
+                                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>OrderTrack(status: snapshot.data!.docs[index]["status"].toString(),)));
+
+                                                },
+                                                  child: Container(
                                                       width: 84.w,
                                                       height: 29.h,
                                                       decoration: ShapeDecoration(
@@ -429,100 +436,128 @@ class _My_OrderState extends State<My_Order> {
                                                               )),
                                                         ),
                                                       )),
-                                                  SizedBox(width: 6.w,),
-                                                  Column(
-                                                    crossAxisAlignment: CrossAxisAlignment
-                                                        .start,
-                                                    children: [
-                                                      Text(
-                                                        "upto ${snapshot.data!
-                                                            .docs[index]["offer"
-                                                        ].toString()}% off",
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          textStyle: TextStyle(
-                                                            color: Color(
-                                                                0xFFEA3030),
-                                                            fontSize: 8.sp,
-                                                            fontWeight: FontWeight
-                                                                .w500,
-                                                          ),
+                                                ),
+                                                SizedBox(width: 6.w,),
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "upto ${snapshot.data!
+                                                          .docs[index]["offer"
+                                                      ].toString()}% off",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        textStyle: TextStyle(
+                                                          color: Color(
+                                                              0xFFEA3030),
+                                                          fontSize: 8.sp,
+                                                          fontWeight: FontWeight
+                                                              .w500,
                                                         ),
                                                       ),
-                                                      Text(
-                                                        "₹ ${
-                                                            snapshot
-                                                                .data!
-                                                                .docs[index]
-                                                            ["priceoffer"]
-                                                                .toString()
-                                                        }",
-                                                        textAlign: TextAlign
-                                                            .center,
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          textStyle: TextStyle(
-                                                            decoration: TextDecoration
-                                                                .lineThrough,
-                                                            color: Color(
-                                                                0xFFA6A6A6),
-                                                            fontSize: 12.sp,
-                                                            fontWeight: FontWeight
-                                                                .w500,
-                                                          ),
+                                                    ),
+                                                    Text(
+                                                      "₹ ${
+                                                          snapshot
+                                                              .data!
+                                                              .docs[index]
+                                                          ["priceoffer"]
+                                                              .toString()
+                                                      }",
+                                                      textAlign: TextAlign
+                                                          .center,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        textStyle: TextStyle(
+                                                          decoration: TextDecoration
+                                                              .lineThrough,
+                                                          color: Color(
+                                                              0xFFA6A6A6),
+                                                          fontSize: 12.sp,
+                                                          fontWeight: FontWeight
+                                                              .w500,
                                                         ),
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            Row(mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Text('Delivery by ',
+                                                    style: GoogleFonts.montserrat(
+                                                      textStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13.sp,
+                                                        fontWeight: FontWeight.w400,
+                                                        letterSpacing: -0.30.w,
+                                                      ),
+                                                    )),
+                                                SizedBox(width: 5.w,),
+                                                SizedBox(
+                                                  width: 110.w,
+                                                  height: 20.h,
+                                                  child: Text(
+                                                   snapshot.data!.docs[index]["date"].toString(),
+                                                    style: GoogleFonts.montserrat(
+                                                        textStyle: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16.sp,
+                                                          fontWeight: FontWeight.w600,
+                                                          letterSpacing: -1.10.w,
+                                                        )),
+                                                  ),
+                                                )
+                                              ],
+                                            )
 
-                                            ],
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.h,),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w),
+                                      child: Divider(
+                                        thickness: 1.sp, height: 1.h,),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w, vertical: 8.h),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Total Order (1)   :',
+                                            style: GoogleFonts.montserrat(
+                                                textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                )
+                                            ),
+                                          ),
+                                          Text(
+                                            "₹ ${snapshot.data!
+                                                .docs[index]["price"
+                                            ].toString()}",
+                                            textAlign: TextAlign.right,
+                                            style: GoogleFonts.montserrat(
+                                                textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                )
+                                            ),
                                           )
                                         ],
                                       ),
-                                      SizedBox(height: 10.h,),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15.w),
-                                        child: Divider(
-                                          thickness: 1.sp, height: 1.h,),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15.w, vertical: 8.h),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Total Order (1)   :',
-                                              style: GoogleFonts.montserrat(
-                                                  textStyle: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                              ),
-                                            ),
-                                            Text(
-                                              "₹ ${snapshot.data!
-                                                  .docs[index]["price"
-                                              ].toString()}",
-                                              textAlign: TextAlign.right,
-                                              style: GoogleFonts.montserrat(
-                                                  textStyle: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w600,
-                                                  )
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
                               ),
                             );

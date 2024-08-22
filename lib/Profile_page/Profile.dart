@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
                           decoration: ShapeDecoration(
                             image: DecorationImage(
                               image: NetworkImage(snapshot.data!.docs[index]["profile"].toString()),
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.r),
