@@ -12,7 +12,7 @@ class Favourite extends StatefulWidget {
   @override
   State<Favourite> createState() => _WishlistState();
 }
-
+//subcollection
 class _WishlistState extends State<Favourite> {
 
   @override

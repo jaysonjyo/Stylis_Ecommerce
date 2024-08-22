@@ -37,7 +37,7 @@ class ProductDetails extends StatefulWidget {
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
 }
-
+//product details
 class _ProductDetailsState extends State<ProductDetails> {
   int curentindex = 0;
   bool favourites = false;

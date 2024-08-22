@@ -18,7 +18,7 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
-
+//home all collections
 class _HomeState extends State<Home> {
 
   int curentindex = 0;

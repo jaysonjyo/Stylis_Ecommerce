@@ -18,7 +18,7 @@ class Cart extends StatefulWidget {
   @override
   State<Cart> createState() => _CartState();
 }
-
+//subcollection
 class _CartState extends State<Cart> {
   final date = DateTime.now().add(Duration(days: 7));
   // payment for any payments

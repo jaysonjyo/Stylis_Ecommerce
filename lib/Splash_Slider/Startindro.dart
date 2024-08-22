@@ -13,7 +13,7 @@ class Starindro extends StatefulWidget {
   @override
   State<Starindro> createState() => _StarindroState();
 }
-
+//firstscreen2
 class _StarindroState extends State<Starindro> {
   @override
   Widget build(BuildContext context) {

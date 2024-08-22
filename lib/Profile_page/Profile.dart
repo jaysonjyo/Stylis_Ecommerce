@@ -17,7 +17,7 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
-
+//profile
 class _ProfileState extends State<Profile> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final firestor= FirebaseFirestore.instance.collection("users").snapshots();

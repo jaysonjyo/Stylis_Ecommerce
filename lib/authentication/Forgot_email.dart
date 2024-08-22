@@ -12,7 +12,7 @@ class ForgotEmail extends StatefulWidget {
   @override
   State<ForgotEmail> createState() => _ForgotEmailState();
 }
-
+//firbase
 class _ForgotEmailState extends State<ForgotEmail> {
   TextEditingController emailreset=TextEditingController();
   FirebaseAuth auth =FirebaseAuth.instance;

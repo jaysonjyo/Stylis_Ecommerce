@@ -14,7 +14,7 @@ class BottamNavigationBar extends StatefulWidget {
   @override
   State<BottamNavigationBar> createState() => _BottamNavigationBarState();
 }
-
+//navigationbar
 class _BottamNavigationBarState extends State<BottamNavigationBar> {
   final screens = [Home(),Favourite(),Cart(),Search(),Profile()];
   int currentIndex = 0;

@@ -36,6 +36,7 @@ class ShoppingPayment extends StatefulWidget {
   State<ShoppingPayment> createState() => _ShoppingPaymentState();
 }
 FirebaseAuth auth = FirebaseAuth.instance;
+//payment
 class _ShoppingPaymentState extends State<ShoppingPayment> {
   final firstoreorder= FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid.toString()).collection("order");
   // payment for any payments

@@ -15,7 +15,7 @@ class Otp extends StatefulWidget {
   @override
   State<Otp> createState() => _OtpState();
 }
-
+//verification
 class _OtpState extends State<Otp> {
   FirebaseAuth auth =FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance.collection("users");
